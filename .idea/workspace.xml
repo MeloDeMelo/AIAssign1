@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b998a675-6b07-4f7e-84d0-6bcaf352fe0a" name="Default" comment="Added Test package and Tests for BridgeTorch class">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Assign1/BridgeTorch.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/BridgeTorchTest.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/BridgeAndTorch.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AIAssign1.iml" afterPath="$PROJECT_DIR$/AIAssign1.iml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -561,12 +555,20 @@
       <option name="presentableId" value="Default" />
       <updated>1487443398591</updated>
       <workItem from="1487443400746" duration="21000" />
-      <workItem from="1487443497634" duration="1712000" />
+      <workItem from="1487443497634" duration="1750000" />
     </task>
+    <task id="LOCAL-00001" summary="Added Test package and Tests for BridgeTorch class">
+      <created>1487445215467</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1487445215467</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1733000" />
+    <option name="totallyTimeSpent" value="1771000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
