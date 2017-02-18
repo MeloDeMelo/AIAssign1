@@ -2,7 +2,6 @@ package test;
 
 import Assign1.BridgeTorch;
 import org.junit.Test;
-
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -15,13 +14,12 @@ import static org.junit.Assert.*;
 public class BridgeTorchTest {
 
     private BridgeTorch bt;
-    private ArrayList startup, move;
+    private ArrayList startup;
     private int distance;
 
     @org.junit.Before
     public void setUp() throws Exception {
         startup = new ArrayList();
-        move = new ArrayList();
         startup.add(1);
         startup.add(2);
         startup.add(3);
@@ -32,40 +30,40 @@ public class BridgeTorchTest {
 
     @Test
     public void moveForward() {
-        move.add(1);
-        move.add(3);
+        int[] move = {1,3};
         distance = bt.move(move);
-        assertEquals(distance, 3);
-        assertEquals(move, bt.getPeopleRoB());
+        assertEquals(3, distance);
+        ArrayList roB = new ArrayList();
+        roB.add(1);
+        roB.add(3);
+        assertEquals(roB, bt.getPeopleRoB());
         assertFalse(bt.getTorch());
     }
 
     @Test
     public void moveBack() {
-        move.add(1);
+        int[] move = {1};
         distance = bt.move(move);
         assertFalse(bt.getPeopleLoB().contains(1));
         distance = bt.move(move);
-        assertEquals(distance, 1);
+        assertEquals(1, distance);
         assertTrue(bt.getPeopleLoB().contains(1));
     }
 
     @Test
     public void checkWin() {
         int total = 0;
-        move.add(1);
-        move.add(2);
+        int[] move = {1,2};
+        int[] moveBack = {1};
         total += bt.move(move);
         assertFalse(bt.checkWin());
-        move.remove(1);
-        total += bt.move(move);
-        move.add(3);
-        total += bt.move(move);
-        move.remove(1);
-        total += bt.move(move);
-        move.add(5);
-        total += bt.move(move);
+        total += bt.move(moveBack);
+        int[] move1 = {1,3};
+        total += bt.move(move1);
+        total += bt.move(moveBack);
+        int[] move2 = {1,5};
+        total += bt.move(move2);
         assertTrue(bt.checkWin());
-        assertEquals(total, 12);
+        assertEquals(12, total);
     }
 }

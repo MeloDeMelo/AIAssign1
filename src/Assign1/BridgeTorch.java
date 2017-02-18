@@ -22,42 +22,49 @@ public class BridgeTorch {
         torchLeft = true;
     }
 
-    public int move(ArrayList peopleMoving){
-        if (peopleMoving.size() == 1){
-            if (torchLeft){
-                if(peopleLoB.contains(peopleMoving.get(0))){
-                    peopleLoB.remove(peopleMoving.get(0));
-                    peopleRoB.add(peopleMoving.get(0));
-                }
-                else{
-                    return -1;
-                }
-            }
-            else {
-                if(peopleRoB.contains(peopleMoving.get(0))){
-                    peopleRoB.remove(peopleMoving.get(0));
-                    peopleLoB.add(peopleMoving.get(0));
-                }
-                else{
-                    return -1;
-                }
-            }
-            toggleTorch();
-            return (int) peopleMoving.get(0);
+    public int move(int[] peopleMoving){
+        int timeTaken = -1;
+        if ((peopleMoving.length == 2) && (torchLeft)){
+            timeTaken = moveRight(peopleMoving);
         }
-        else if((peopleMoving.size() == 2) && (torchLeft)){
-            int longest = -1;
-            if(peopleLoB.contains(peopleMoving.get(0))){
-                peopleLoB.remove(peopleMoving.get(0));
-                peopleRoB.add(peopleMoving.get(0));
-                if(peopleLoB.contains(peopleMoving.get(1))){
-                    peopleLoB.remove(peopleMoving.get(1));
-                    peopleRoB.add(peopleMoving.get(1));
-                    toggleTorch();
-                    return ((int)peopleMoving.get(0) > (int)peopleMoving.get(1)) ? (int)peopleMoving.get(0) : (int)peopleMoving.get(1);
-                }
+        else if ((peopleMoving.length == 1) &&(torchLeft)){
+            timeTaken = moveRight(peopleMoving[0]);
+        }
+        else if (peopleMoving.length == 1){
+            timeTaken = moveLeft(peopleMoving[0]);
+        }
+        toggleTorch();
+        return timeTaken;
+    }
+
+    private int moveRight(int[] peopleMoving) {
+        int person1, person2;
+        person1 = moveRight(peopleMoving[0]);
+        person2 = moveRight(peopleMoving[1]);
+        if(person1 != -1){
+            if(person2 != -1){
+                return (person1 > person2) ? person1 : person2;
             }
-            return longest;
+        }
+        return -1;
+    }
+
+    private int moveRight(int personMoving){
+        int index = peopleLoB.indexOf(personMoving);
+        if(index != -1){
+            peopleLoB.remove(index);
+            peopleRoB.add(personMoving);
+            return personMoving;
+        }
+        return -1;
+    }
+
+    private int moveLeft(int personMoving){
+        int index = peopleRoB.indexOf(personMoving);
+        if(index != -1){
+            peopleRoB.remove(index);
+            peopleLoB.add(personMoving);
+            return personMoving;
         }
         return -1;
     }
