@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b998a675-6b07-4f7e-84d0-6bcaf352fe0a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/BridgeAndTorch.java" />
-    </list>
+    <list default="true" id="b998a675-6b07-4f7e-84d0-6bcaf352fe0a" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -506,12 +503,12 @@
       <option name="presentableId" value="Default" />
       <updated>1487443398591</updated>
       <workItem from="1487443400746" duration="21000" />
-      <workItem from="1487443497634" duration="155000" />
+      <workItem from="1487443497634" duration="329000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="176000" />
+    <option name="totallyTimeSpent" value="350000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
