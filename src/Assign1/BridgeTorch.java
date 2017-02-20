@@ -1,5 +1,7 @@
 package Assign1;
 
+import sun.corba.Bridge;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,6 +24,19 @@ public class BridgeTorch {
         numberOfPeople = peopleLoB.size();
         peopleRoB = new ArrayList();
         torchLeft = true;
+    }
+
+    public BridgeTorch(BridgeTorch bt){
+        this.peopleLoB = new ArrayList<>();
+        this.peopleRoB = new ArrayList<>();
+        for (Integer person:bt.getPeopleLoB()){
+            this.peopleLoB.add(person);
+        }
+        for (Integer person:bt.getPeopleRoB()){
+            this.peopleRoB.add(person);
+        }
+        this.torchLeft = bt.getTorch();
+        this.numberOfPeople = bt.getNumberOfPeople();
     }
 
     //Moves a person left over the bridge
@@ -68,6 +83,10 @@ public class BridgeTorch {
         return possibleMoves;
     }
 
+    public String toString(){
+        return ("PeopleLoB: " + peopleLoB + ", PeopleRoB: " + peopleRoB + ", TorchLoB: " + torchLeft);
+    }
+
     public boolean checkWin(){
         return (peopleLoB.isEmpty()) && (peopleRoB.size() == numberOfPeople) && (!torchLeft);
     }
@@ -76,15 +95,19 @@ public class BridgeTorch {
         torchLeft = !torchLeft;
     }
 
+    public int getNumberOfPeople(){
+        return numberOfPeople;
+    }
+
     public boolean getTorch(){
         return torchLeft;
     }
 
-    public List<Integer> getPeopleLoB(){
+    public ArrayList<Integer> getPeopleLoB(){
         return peopleLoB;
     }
 
-    public List<Integer> getPeopleRoB(){
+    public ArrayList<Integer> getPeopleRoB(){
         return peopleRoB;
     }
 }
