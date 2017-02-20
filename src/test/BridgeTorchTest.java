@@ -1,8 +1,11 @@
 package test;
 
 import Assign1.BridgeTorch;
+import Assign1.BridgeTorchNode;
 import org.junit.Test;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -14,7 +17,7 @@ import static org.junit.Assert.*;
 public class BridgeTorchTest {
 
     private BridgeTorch bt;
-    private ArrayList startup;
+    private ArrayList<Integer> startup;
     private int distance;
 
     @org.junit.Before
@@ -30,8 +33,7 @@ public class BridgeTorchTest {
 
     @Test
     public void moveForward() {
-        int[] move = {1,3};
-        distance = bt.move(move);
+        distance = bt.move(1,3);
         assertEquals(3, distance);
         ArrayList roB = new ArrayList();
         roB.add(1);
@@ -42,27 +44,52 @@ public class BridgeTorchTest {
 
     @Test
     public void moveBack() {
-        int[] move = {1};
-        distance = bt.move(move);
+        distance += bt.move(1, 2);
         assertFalse(bt.getPeopleLoB().contains(1));
-        distance = bt.move(move);
-        assertEquals(1, distance);
+        assertFalse(bt.getPeopleLoB().contains(2));
+        distance += bt.move(1);
+        assertEquals(3, distance);
         assertTrue(bt.getPeopleLoB().contains(1));
+        assertFalse(bt.getPeopleLoB().contains(2));
+    }
+
+    @Test
+    public void checkPossibleMovesLeft(){
+        LinkedList<BridgeTorchNode> possibleMoves = bt.getPossibleMoves();
+        LinkedList<BridgeTorchNode> correctMoves = new LinkedList<>();
+        correctMoves.add(new BridgeTorchNode(1,2));
+        correctMoves.add(new BridgeTorchNode(1,3));
+        correctMoves.add(new BridgeTorchNode(1,5));
+        correctMoves.add(new BridgeTorchNode(2,3));
+        correctMoves.add(new BridgeTorchNode(2,5));
+        correctMoves.add(new BridgeTorchNode(3,5));
+        for (int i = 0; i < correctMoves.size(); i ++){
+            assertEquals(correctMoves.get(i).getPerson1(), possibleMoves.get(i).getPerson1());
+            assertEquals(correctMoves.get(i).getPerson2(), possibleMoves.get(i).getPerson2());
+        }
+    }
+
+    @Test
+    public void checkPossibleMovesRight(){
+        distance = bt.move(1,2);
+        LinkedList<BridgeTorchNode> possibleMoves = bt.getPossibleMoves();
+        LinkedList<BridgeTorchNode> correctMoves = new LinkedList<>();
+        correctMoves.add(new BridgeTorchNode(1));
+        correctMoves.add(new BridgeTorchNode(2));
+        for (int i = 0; i < correctMoves.size(); i ++){
+            assertEquals(correctMoves.get(i).getPerson1(), possibleMoves.get(i).getPerson1());
+        }
     }
 
     @Test
     public void checkWin() {
         int total = 0;
-        int[] move = {1,2};
-        int[] moveBack = {1};
-        total += bt.move(move);
+        total += bt.move(1,2);
         assertFalse(bt.checkWin());
-        total += bt.move(moveBack);
-        int[] move1 = {1,3};
-        total += bt.move(move1);
-        total += bt.move(moveBack);
-        int[] move2 = {1,5};
-        total += bt.move(move2);
+        total += bt.move(1);
+        total += bt.move(1,3);
+        total += bt.move(1);
+        total += bt.move(1,5);
         assertTrue(bt.checkWin());
         assertEquals(12, total);
     }

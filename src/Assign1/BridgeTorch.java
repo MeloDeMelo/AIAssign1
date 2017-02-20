@@ -1,6 +1,8 @@
 package Assign1;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Bridge and Torch problem base
@@ -11,62 +13,59 @@ public class BridgeTorch {
 
     //Left of bridge means not crossed (LoB)
     //Right of bridge means has crossed (RoB)
-    private ArrayList peopleLoB, peopleRoB;
+    private ArrayList<Integer> peopleLoB, peopleRoB;
     private boolean torchLeft;
     private int numberOfPeople;
 
-    public BridgeTorch(ArrayList peopleLoB){
+    public BridgeTorch(ArrayList<Integer> peopleLoB){
         this.peopleLoB = peopleLoB;
         numberOfPeople = peopleLoB.size();
         peopleRoB = new ArrayList();
         torchLeft = true;
     }
 
-    public int move(int[] peopleMoving){
-        int timeTaken = -1;
-        if ((peopleMoving.length == 2) && (torchLeft)){
-            timeTaken = moveRight(peopleMoving);
+    //Moves a person left over the bridge
+    public int move(int personMoving){
+        if (!torchLeft){
+            if(peopleRoB.contains(personMoving)){
+                peopleRoB.remove(peopleRoB.indexOf(personMoving));
+                peopleLoB.add(personMoving);
+                toggleTorch();
+                return personMoving;
+            }
         }
-        else if ((peopleMoving.length == 1) &&(torchLeft)){
-            timeTaken = moveRight(peopleMoving[0]);
-        }
-        else if (peopleMoving.length == 1){
-            timeTaken = moveLeft(peopleMoving[0]);
-        }
-        toggleTorch();
-        return timeTaken;
+        return -1;
     }
 
-    private int moveRight(int[] peopleMoving) {
-        int person1, person2;
-        person1 = moveRight(peopleMoving[0]);
-        person2 = moveRight(peopleMoving[1]);
-        if(person1 != -1){
-            if(person2 != -1){
+    //Moves two people right over the bridge
+    public int move(int person1, int person2){
+        if (torchLeft){
+            if ((peopleLoB.contains(person1)) && (peopleLoB.contains(person2))) {
+                peopleLoB.remove(peopleLoB.indexOf(person1));
+                peopleRoB.add(person1);
+                peopleLoB.remove(peopleLoB.indexOf(person2));
+                peopleRoB.add(person2);
+                toggleTorch();
                 return (person1 > person2) ? person1 : person2;
             }
         }
         return -1;
     }
 
-    private int moveRight(int personMoving){
-        int index = peopleLoB.indexOf(personMoving);
-        if(index != -1){
-            peopleLoB.remove(index);
-            peopleRoB.add(personMoving);
-            return personMoving;
+    public LinkedList<BridgeTorchNode> getPossibleMoves(){
+        LinkedList<BridgeTorchNode> possibleMoves = new LinkedList<>();
+        if (!torchLeft){
+            for (int i = 0; i < peopleRoB.size(); i ++){
+                possibleMoves.add(new BridgeTorchNode(peopleRoB.get(i)));
+            }
+        }else{
+            for (int i = 0; i < peopleLoB.size(); i ++){
+                for(int k = i + 1; k < peopleLoB.size(); k++) {
+                    possibleMoves.add(new BridgeTorchNode(peopleLoB.get(i),peopleLoB.get(k)));
+                }
+            }
         }
-        return -1;
-    }
-
-    private int moveLeft(int personMoving){
-        int index = peopleRoB.indexOf(personMoving);
-        if(index != -1){
-            peopleRoB.remove(index);
-            peopleLoB.add(personMoving);
-            return personMoving;
-        }
-        return -1;
+        return possibleMoves;
     }
 
     public boolean checkWin(){
@@ -81,11 +80,11 @@ public class BridgeTorch {
         return torchLeft;
     }
 
-    public ArrayList getPeopleLoB(){
+    public List<Integer> getPeopleLoB(){
         return peopleLoB;
     }
 
-    public ArrayList getPeopleRoB(){
+    public List<Integer> getPeopleRoB(){
         return peopleRoB;
     }
 }
