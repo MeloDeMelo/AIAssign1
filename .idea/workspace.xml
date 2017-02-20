@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b998a675-6b07-4f7e-84d0-6bcaf352fe0a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Assign1/BTDepthFirst.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/BridgeTorchNodeTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Assign1/BTStrats.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Assign1/BridgeTorch.java" afterPath="$PROJECT_DIR$/src/Assign1/BridgeTorch.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Assign1/BridgeTorchNode.java" afterPath="$PROJECT_DIR$/src/Assign1/BridgeTorchNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/BridgeTorchTest.java" afterPath="$PROJECT_DIR$/src/test/BridgeTorchTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Assign1/BTDepthFirst.java" afterPath="$PROJECT_DIR$/src/Assign1/BTDepthFirst.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,7 +23,7 @@
       <file leaf-file-name="BridgeTorch.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Assign1/BridgeTorch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
+            <state relative-caret-position="-729">
               <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -64,7 +61,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BridgeTorchNodeTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FrontEnd.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Assign1/FrontEnd.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="363">
+              <caret line="45" column="46" lean-forward="true" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="46" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BTStrats.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Assign1/BTStrats.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BridgeTorchNodeTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/BridgeTorchNodeTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="363">
@@ -76,6 +95,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="BTDepthFirst.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Assign1/BTDepthFirst.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="629">
+              <caret line="39" column="70" lean-forward="false" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -83,6 +112,7 @@
       <list>
         <option value="JUnit4 Test Class" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -105,6 +135,8 @@
         <option value="$PROJECT_DIR$/src/Assign1/BridgeTorchNode.java" />
         <option value="$PROJECT_DIR$/src/Assign1/BridgeTorch.java" />
         <option value="$PROJECT_DIR$/src/test/BridgeTorchNodeTest.java" />
+        <option value="$PROJECT_DIR$/src/Assign1/BTDepthFirst.java" />
+        <option value="$PROJECT_DIR$/src/Assign1/BTStrats.java" />
       </list>
     </option>
   </component>
@@ -745,7 +777,7 @@
       <workItem from="1487443400746" duration="21000" />
       <workItem from="1487443497634" duration="13048000" />
       <workItem from="1487547944118" duration="8914000" />
-      <workItem from="1487610569314" duration="4020000" />
+      <workItem from="1487610569314" duration="7841000" />
     </task>
     <task id="LOCAL-00001" summary="Added Test package and Tests for BridgeTorch class">
       <created>1487445215467</created>
@@ -775,7 +807,14 @@
       <option name="project" value="LOCAL" />
       <updated>1487556801712</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="bridgeTorch Copy Constructor and bridgeTorchnode set parent working">
+      <created>1487622163598</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1487622163598</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -811,7 +850,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26003000" />
+    <option name="totallyTimeSpent" value="29824000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -827,7 +866,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -859,7 +898,8 @@
     <MESSAGE value="BridgeTorch Base + tests" />
     <MESSAGE value="Refactored BridgeTorch and tests" />
     <MESSAGE value="Refactored BridgeTorch and tests, added node functionality for bridge torch and started frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored BridgeTorch and tests, added node functionality for bridge torch and started frontend" />
+    <MESSAGE value="bridgeTorch Copy Constructor and bridgeTorchnode set parent working" />
+    <option name="LAST_COMMIT_MESSAGE" value="bridgeTorch Copy Constructor and bridgeTorchnode set parent working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -944,21 +984,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Assign1/FrontEnd.java">
+    <entry file="file://$PROJECT_DIR$/src/test/BridgeTorchTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="35" column="20" lean-forward="false" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="-374">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Assign1/BTDepthFirst.java">
+    <entry file="file://$PROJECT_DIR$/src/test/BridgeTorchNodeTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="25" lean-forward="false" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
-          <folding />
+        <state relative-caret-position="363">
+          <caret line="39" column="19" lean-forward="false" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -979,17 +1019,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/BridgeTorchTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-374">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Assign1/BridgeTorch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
+        <state relative-caret-position="-729">
           <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -997,10 +1029,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/BridgeTorchNodeTest.java">
+    <entry file="file://$PROJECT_DIR$/src/Assign1/BTDepthFirst.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="39" column="70" lean-forward="false" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Assign1/BTStrats.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Assign1/FrontEnd.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="363">
-          <caret line="39" column="19" lean-forward="false" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
+          <caret line="45" column="46" lean-forward="true" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
