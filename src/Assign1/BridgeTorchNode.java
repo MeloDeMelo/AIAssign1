@@ -31,6 +31,8 @@ public class BridgeTorchNode {
         this.state = state;
         cost = 0;
         depth = 0;
+        person1 = -1;
+        person2 = -1;
     }
 
     public BridgeTorch getState(){

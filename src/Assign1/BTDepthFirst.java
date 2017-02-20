@@ -88,6 +88,7 @@ public class BTDepthFirst implements BTStrats{
                 result.push(currNode);
                 currNode = currNode.getParentNode();
             }
+            result.push(new BridgeTorchNode(initialState));
             return result;
         }
         else{

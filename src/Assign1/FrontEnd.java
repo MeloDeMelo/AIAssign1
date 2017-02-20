@@ -1,6 +1,7 @@
 package Assign1;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
@@ -28,26 +29,51 @@ public class FrontEnd {
         return response;
     }
 
+    private void printBridgeAndTorch(String thing){
+        System.out.println("BridgeAndTorch: " + thing);
+    }
+
     private void startBridgeAndTorch(){
         ArrayList input = new ArrayList();
-        System.out.println("Please input a list of how long it would take people to cross a bridge:");
+        printBridgeAndTorch("Please input a list of how long it would take people to cross a bridge:");
         String response = getStringInput();
         for (String s : response.split("\\s")) {
             input.add(Integer.parseInt(s));
         }
         bt = new BridgeTorch(input);
 
-        System.out.println("Please choose one of the following options:\n1.Breadth First\n2.Depth First\n3.A*");
+        printBridgeAndTorch("Please choose one of the following options:\n1.Breadth First\n2.Depth First\n3.A*");
         validResponse = false;
+        BTStrats strat = null;
         while (!validResponse) {
             response = getStringInput();
             if (response.equals("1")) {
                 validResponse = true;
             } else if (response.equals("2")) {
+                strat = new BTDepthFirst();
                 validResponse = true;
             } else if (response.equals("3")){
                 validResponse = true;
             }
+        }
+
+        printBridgeAndTorch("Solving...");
+        printBridgeAndTorch("LoB = Left of bridge (people who haven't crossed yet) and vice versa\n");
+        LinkedList<BridgeTorchNode> result = strat.solve(bt);
+        if(result == null){
+            printBridgeAndTorch("Failed returning to menu");
+        }else{
+            for(BridgeTorchNode node : result){
+                if (node.getPerson1() != -1){
+                    if(node.getPerson2() != -1){
+                        printBridgeAndTorch("Move " + node.getPerson1() + " and " + node.getPerson2());
+                    }else{
+                        printBridgeAndTorch("Move " + node.getPerson1());
+                    }
+                }
+                printBridgeAndTorch("State: " + node.getState().toString() + "\n");
+            }
+            printBridgeAndTorch("Total Cost: " + result.getLast().getCost());
         }
     }
 
