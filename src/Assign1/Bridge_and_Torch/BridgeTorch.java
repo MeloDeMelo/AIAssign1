@@ -1,10 +1,7 @@
-package Assign1;
-
-import sun.corba.Bridge;
+package Assign1.Bridge_and_Torch;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Bridge and Torch problem base

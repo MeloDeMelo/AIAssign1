@@ -1,4 +1,4 @@
-package Assign1;
+package Assign1.Bridge_and_Torch;
 
 /**
  * Bridge and Torch problem Node

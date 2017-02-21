@@ -1,7 +1,7 @@
 package test;
 
-import Assign1.BridgeTorch;
-import Assign1.BridgeTorchNode;
+import Assign1.Bridge_and_Torch.BridgeTorch;
+import Assign1.Bridge_and_Torch.BridgeTorchNode;
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.LinkedList;
