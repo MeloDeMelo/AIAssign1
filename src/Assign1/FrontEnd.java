@@ -32,10 +32,14 @@ public class FrontEnd {
     private void printBridgeAndTorch(String thing){
         System.out.println("BridgeAndTorch: " + thing);
     }
+    private void printNote(String thing){
+        System.out.println("Note: " + thing);
+    }
 
     private void startBridgeAndTorch(){
-        ArrayList input = new ArrayList();
-        printBridgeAndTorch("Please input a list of how long it would take people to cross a bridge:");
+        ArrayList<Integer> input = new ArrayList<>();
+        printBridgeAndTorch("Please input a list of how long it would take people to cross a bridge");
+        printNote("For breadth first search no more than 6 inputs");
         String response = getStringInput();
         for (String s : response.split("\\s")) {
             input.add(Integer.parseInt(s));
@@ -48,6 +52,7 @@ public class FrontEnd {
         while (!validResponse) {
             response = getStringInput();
             if (response.equals("1")) {
+                strat = new BTBreadthFirst();
                 validResponse = true;
             } else if (response.equals("2")) {
                 strat = new BTDepthFirst();
@@ -58,7 +63,7 @@ public class FrontEnd {
         }
 
         printBridgeAndTorch("Solving...");
-        printBridgeAndTorch("LoB = Left of bridge (people who haven't crossed yet) and vice versa\n");
+        printNote("LoB = Left of bridge (people who haven't crossed yet) and vice versa\n");
         LinkedList<BridgeTorchNode> result = strat.solve(bt);
         if(result == null){
             printBridgeAndTorch("Failed returning to menu");
@@ -79,7 +84,7 @@ public class FrontEnd {
 
     public static void main(String[] args){
         String response;
-        boolean quit = false, validResponse = false;
+        boolean quit = false, validResponse;
         FrontEnd fe = new FrontEnd();
 
         while(!quit) {

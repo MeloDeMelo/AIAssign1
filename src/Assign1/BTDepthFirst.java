@@ -3,25 +3,16 @@ package Assign1;
 import java.util.LinkedList;
 
 /**
- * Created by Max on 2/20/2017.
+ * Solves Bridge and Torch problem with Deapth First Search
+ * Written by Max DeMelo - 100937368
+ * 2/20/2017
  */
-public class BTDepthFirst implements BTStrats{
+public class BTDepthFirst extends BTStrats{
 
-    LinkedList<BridgeTorchNode> node_List, new_Nodes;
-    boolean solved, goDeeper;
-    BridgeTorchNode currNode;
-    int depth;
+    private boolean goDeeper;
 
     public BTDepthFirst(){
-        DepthFirst_init();
-    }
-
-    private void DepthFirst_init(){
-        node_List = new LinkedList<>();
-        new_Nodes = new LinkedList<>();
-        solved = false;
-        goDeeper = false;
-        depth = 0;
+        init();
     }
 
     private boolean moreAtDepth(){
@@ -32,23 +23,15 @@ public class BTDepthFirst implements BTStrats{
         return false;
     }
 
-    private void removeNode(BridgeTorchNode node){
-        int index = node_List.indexOf(node);
-        node_List.remove(index);
-    }
-
     public LinkedList<BridgeTorchNode> solve(BridgeTorch initialState){
-        DepthFirst_init();
         currNode = new BridgeTorchNode(initialState);
-        LinkedList<BridgeTorchNode> result = new LinkedList<>();
+        goDeeper = false;
 
         do{
-            new_Nodes = currNode.getState().getPossibleMoves();
-            goDeeper = (!new_Nodes.isEmpty())? true : false;
-            for(BridgeTorchNode node : new_Nodes){
-                node.setParentNode(currNode);
-            }
+            LinkedList<BridgeTorchNode> new_Nodes = getNew_Nodes(currNode);
+            goDeeper = (!new_Nodes.isEmpty());
             node_List.addAll(new_Nodes);
+
             if(currNode.getState().checkWin()){
                 solved = true;
             }else if(goDeeper){
@@ -83,16 +66,6 @@ public class BTDepthFirst implements BTStrats{
             }
         }while(!solved);
 
-        if(currNode != null){
-            while(currNode.getParentNode() != null){
-                result.push(currNode);
-                currNode = currNode.getParentNode();
-            }
-            result.push(new BridgeTorchNode(initialState));
-            return result;
-        }
-        else{
-            return null;
-        }
+        return interpretResults(currNode, initialState);
     }
 }
