@@ -143,8 +143,76 @@ public class SpaceManagementState {
         return board;
     }
 
-    public LinkedList<SpaceManagementNode> getPossibleMoves(){
-        return null;
+    public ArrayList<SpaceManagementNode> getPossibleMoves(){
+        ArrayList<SpaceManagementNode> results = new ArrayList<>();
+
+        for(int[] startCoordinate : getBlankSpaceCoordinates()){
+            for(int[] endCoordinate : getSurroundingCoordinates(startCoordinate[0], startCoordinate[1])){
+                if(board[endCoordinate[0]][endCoordinate[1]] != -1){
+                    results.add(new SpaceManagementNode(startCoordinate[0], startCoordinate[1], endCoordinate[0], endCoordinate[1]));
+                }
+            }
+        }
+
+        for(int i = 0; i < height-1; i ++) {
+            for(int k = 0; k < width; k ++) {
+                for (int[] lCoordinate : getLCorrdinates(i, k)) {
+                    results.add(new SpaceManagementNode(i, k, lCoordinate[0], lCoordinate[1]));
+                }
+            }
+        }
+        return results;
+    }
+
+    private ArrayList<int[]> getLCorrdinates(int x, int y){
+        ArrayList<int[]> results = new ArrayList<>();
+        if((notOutOfBounds(x-1,y+2)) && (getAtPosition(x-1, y+2) != -1)){
+            results.add(new int[] {x-1,y+2});
+        }
+        if((notOutOfBounds(x+1,y+2)) && (getAtPosition(x+1, y+2) != -1)){
+            results.add(new int[] {x+1,y+2});
+        }
+        if((notOutOfBounds(x-2,y+1)) && (getAtPosition(x-2, y+1) != -1)){
+            results.add(new int[] {x-2,y+1});
+        }
+        if((notOutOfBounds(x+2,y+1)) && (getAtPosition(x+2, y+1) != -1)){
+            results.add(new int[] {x+2,y+1});
+        }
+        return results;
+    }
+
+    private boolean notOutOfBounds(int x, int y){
+        if ((x>-1) &&(x<width)){
+            if ((y>-1) &&(y<height))
+                return true;
+        }
+        return false;
+    }
+
+    private ArrayList<int[]> getBlankSpaceCoordinates(){
+        ArrayList<int[]> results = new ArrayList<>();
+        int[] coordinate = new int[2];
+        for(int i = 0; i < width; i ++){
+            for (int k = 0; k < height; k ++){
+                if(board[i][k] == -1) {
+                    coordinate[0] = i;
+                    coordinate[1] = k;
+                    results.add(coordinate);
+                }
+            }
+        }
+        return results;
+    }
+
+    private ArrayList<int[]> getSurroundingCoordinates(int x, int y){
+        ArrayList<int[]> results = new ArrayList<>();
+        for(int i = -1; i < 2; i ++){
+            for (int k = -1; k < 2; k ++){
+                if((notOutOfBounds(x+k, y+i)) && !((x+k == x) && (y+i == y)))
+                    results.add(new int[] {x+k, y+i});
+            }
+        }
+        return results;
     }
 
     public String toString(){

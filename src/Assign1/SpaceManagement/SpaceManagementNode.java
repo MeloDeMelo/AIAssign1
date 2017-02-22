@@ -26,6 +26,10 @@ public class SpaceManagementNode {
         return depth;
     }
 
+    public int[] getCoordinate(){
+        return new int []{initialX, initialY, endX, endY};
+    }
+
     public SpaceManagementNode getParent(){
         return parent;
     }

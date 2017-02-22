@@ -1,5 +1,6 @@
 package test;
 
+import Assign1.SpaceManagement.SpaceManagementNode;
 import Assign1.SpaceManagement.SpaceManagementState;
 import org.junit.Test;
 
@@ -45,11 +46,6 @@ public class SpaceManagementStateTest {
         int[][] newBoard = {{1,8,7},{2,-1,6},{3,4,5}};
         sms.setBoard(newBoard);
         assertTrue(sms.checkWin());
-    }
-
-    @Test
-    public void getPossibleMoves(){
-
     }
 
     @Test
