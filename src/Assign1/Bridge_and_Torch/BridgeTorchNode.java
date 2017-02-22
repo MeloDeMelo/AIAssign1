@@ -40,7 +40,6 @@ public class BridgeTorchNode {
     }
 
     public void setParentNode(BridgeTorchNode parentNode){
-        this.state = new BridgeTorch(parentNode.getState());
         this.parentNode = parentNode;
         this.depth = parentNode.getDepth() + 1;
         this.state = new BridgeTorch(parentNode.getState());

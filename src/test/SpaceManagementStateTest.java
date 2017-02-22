@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
  */
 public class SpaceManagementStateTest {
 
-    SpaceManagementState sms;
+    private SpaceManagementState sms;
 
     @org.junit.Before
     public void setUp() throws Exception{
@@ -42,7 +42,9 @@ public class SpaceManagementStateTest {
 
     @Test
     public void checkWin(){
-
+        int[][] newBoard = {{1,8,7},{2,-1,6},{3,4,5}};
+        sms.setBoard(newBoard);
+        assertTrue(sms.checkWin());
     }
 
     @Test
@@ -52,6 +54,10 @@ public class SpaceManagementStateTest {
 
     @Test
     public void move(){
-
+        int position1 = sms.getAtPosition(0,2);
+        int position2 = sms.getAtPosition(2,0);
+        sms.move(0,2,2,0);
+        assertEquals(position2, sms.getAtPosition(0,2));
+        assertEquals(position1, sms.getAtPosition(2,0));
     }
 }

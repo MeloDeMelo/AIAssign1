@@ -29,11 +29,7 @@ public class SpaceManagementState {
         this.board = new int[sms.getWidth()][sms.getHeight()];
         this.blankSpaces = sms.getBlankSpaces();
         this.numberRange = width*height-blankSpaces;
-        for(int i = 0; i < width; i ++){
-            for(int k = 0; k < height; k ++){
-                this.board[i][k] = sms.getAtPosition(i, k);
-            }
-        }
+        setBoard(sms.getBoard());
     }
 
     public void move(int startingX, int startingY, int endX, int endY){
@@ -85,7 +81,66 @@ public class SpaceManagementState {
     }
 
     public boolean checkWin(){
-        return false;
+        int correctPosition = 1;
+        int i, k = 0;
+        int rightLimit = width-1, bottomLimit = height-1, leftLimit = 0, topLimit = 0;
+
+        while(correctPosition != numberRange) {
+            for (i = leftLimit; i <= rightLimit; i++) {
+                if(correctPosition == numberRange)
+                    break;
+                else if (correctPosition != getAtPosition(i,k))
+                    return false;
+                else
+                    correctPosition++;
+            }
+            i--;
+            topLimit++;
+            for (k = topLimit; k <= bottomLimit; k++) {
+                if(correctPosition == numberRange)
+                    break;
+                else if (correctPosition != getAtPosition(i,k))
+                    return false;
+                else
+                    correctPosition++;
+            }
+            k--;
+            rightLimit--;
+
+            for (i = rightLimit; i >= leftLimit; i--) {
+                if(correctPosition == numberRange)
+                    break;
+                else if (correctPosition != getAtPosition(i,k))
+                    return false;
+                else
+                    correctPosition++;
+            }
+            i++;
+            bottomLimit--;
+            for (k = bottomLimit; k >= topLimit; k--) {
+                if(correctPosition == numberRange)
+                    break;
+                else if (correctPosition != getAtPosition(i,k))
+                    return false;
+                else
+                    correctPosition++;
+            }
+            k++;
+            leftLimit++;
+        }
+        return true;
+    }
+
+    public void setBoard(int[][] board){
+        for(int i = 0; i < width; i ++){
+            for(int k = 0; k < height; k ++){
+                this.board[i][k] = board[i][k];
+            }
+        }
+    }
+
+    private int[][] getBoard(){
+        return board;
     }
 
     public LinkedList<SpaceManagementNode> getPossibleMoves(){
