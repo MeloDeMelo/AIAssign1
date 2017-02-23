@@ -65,6 +65,7 @@ public class FrontEnd {
                 strat = new BTDepthFirst();
                 validResponse = true;
             } else if (response.equals("3")){
+                strat = new BTAStar();
                 validResponse = true;
             }
         }
