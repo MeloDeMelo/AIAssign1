@@ -1,6 +1,7 @@
 package Assign1.SpaceManagement;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -139,7 +140,7 @@ public class SpaceManagementState {
         }
     }
 
-    private int[][] getBoard(){
+    public int[][] getBoard(){
         return board;
     }
 
@@ -256,5 +257,33 @@ public class SpaceManagementState {
 
     public int getBlankSpaces(){
         return blankSpaces;
+    }
+
+    @Override
+    public int hashCode(){
+        int hash = 17;
+        for(int[] x : board){
+            hash = hash * Arrays.hashCode(x);
+        }
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o){
+            return true;
+        }
+        else if((o == null) || !(o instanceof SpaceManagementState)){
+            return false;
+        }
+        SpaceManagementState sms = (SpaceManagementState) o;
+
+        for(int i = 0; i < width; i ++){
+            for (int k = 0; k < height; k ++){
+                if (sms.getBoard()[i][k] != board[i][k])
+                    return false;
+            }
+        }
+        return true;
     }
 }

@@ -9,13 +9,8 @@ import java.util.LinkedList;
  */
 public class BTBreadthFirst extends BTStrats{
 
-    public BTBreadthFirst(){
-        init();
-    }
-
     public LinkedList<BridgeTorchNode> solve(BridgeTorch initialState) {
         currNode = new BridgeTorchNode(initialState);
-        int searchedNodes = 0;
 
         do{
             node_List.addAll(getNew_Nodes(currNode));
@@ -28,10 +23,8 @@ public class BTBreadthFirst extends BTStrats{
                 solved = true;
                 currNode = null;
             }
-            searchedNodes++;
         }while(!solved);
 
-        System.out.println("Number of nodes looked through: " + searchedNodes);
         return interpretResults(currNode, initialState);
     }
 }

@@ -34,6 +34,14 @@ public class SpaceManagementNode {
         return parent;
     }
 
+    public int[] getStartingPosition(){
+        return new int[] {initialX, initialY};
+    }
+
+    public int[] getEndPosition(){
+        return new int[] {endX, endY};
+    }
+
     public SpaceManagementState getState(){
         return state;
     }

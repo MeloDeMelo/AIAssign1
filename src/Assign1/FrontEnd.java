@@ -1,7 +1,7 @@
 package Assign1;
 
 import Assign1.Bridge_and_Torch.*;
-import Assign1.SpaceManagement.SpaceManagementState;
+import Assign1.SpaceManagement.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -98,6 +98,7 @@ public class FrontEnd {
         }
         sms = new SpaceManagementState(input.get(0), input.get(1), input.get(2));
 
+        validResponse = false;
         while (!validResponse) {
             printSpaceManagement("Is this board okay?(\"yes\", \"no\")\n" + sms);
             response = getStringInput();
@@ -106,6 +107,35 @@ public class FrontEnd {
             } else if (response.toLowerCase().equals("no")) {
                 sms.reRandomize();
             }
+        }
+
+        printSpaceManagement("Please choose one of the following options:\n1.Breadth First\n2.Depth First\n3.A*");
+        validResponse = false;
+        SMStrats strat = null;
+        while (!validResponse) {
+            response = getStringInput();
+            if (response.equals("1")) {
+                strat = new SMBreadthFirst();
+                validResponse = true;
+            } else if (response.equals("2")) {
+                strat = new SMDepthFirst();
+                validResponse = true;
+            } else if (response.equals("3")){
+                validResponse = true;
+            }
+        }
+
+        printSpaceManagement("Solving...");
+        LinkedList<SpaceManagementNode> result = strat.solve(sms);
+        if(result == null){
+            printSpaceManagement("Failed returning to menu");
+        }else{
+            for(SpaceManagementNode node : result){
+                printSpaceManagement("Move: (" + node.getStartingPosition()[0] + ", " + node.getStartingPosition()[1] +
+                ") to (" + node.getEndPosition()[0] + ", " + node.getEndPosition()[1] + ")");
+                printSpaceManagement("State: \n" + node.getState().toString() + "\n");
+            }
+            printSpaceManagement("Total Cost: " + result.getLast().getDepth());
         }
     }
 
