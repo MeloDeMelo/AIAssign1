@@ -1,6 +1,7 @@
 package Assign1;
 
 import Assign1.Bridge_and_Torch.*;
+import Assign1.Bridge_and_Torch.BTAStar.possibleHeuristics;
 import Assign1.SpaceManagement.*;
 
 import java.util.ArrayList;
@@ -43,6 +44,32 @@ public class FrontEnd {
         System.out.println("Note: " + thing);
     }
 
+    private possibleHeuristics getBTHeuristic() {
+        int response;
+        boolean done = false;
+        possibleHeuristics heuristic = null;
+        while (!done) {
+            printBridgeAndTorch("Which Heuristic would you like to use?");
+            int i = 0;
+            for (possibleHeuristics p : possibleHeuristics.values()) {
+                System.out.println("\t" + i + ": " + p);
+                i ++;
+            }
+            while(!in.hasNextInt()) {
+                in.next();
+            }
+            response = in.nextInt();
+            if ((response <= possibleHeuristics.values().length + 1) && (response > -1)) {
+                heuristic = possibleHeuristics.values()[response];
+                done = true;
+            }
+            else {
+                printBridgeAndTorch("Invalid error!");
+            }
+        }
+        return heuristic;
+    }
+
     private void startBridgeAndTorch(){
         ArrayList<Integer> input = new ArrayList<>();
         printBridgeAndTorch("Please input a list of how long it would take people to cross a bridge");
@@ -65,7 +92,7 @@ public class FrontEnd {
                 strat = new BTDepthFirst();
                 validResponse = true;
             } else if (response.equals("3")){
-                strat = new BTAStar();
+                strat = new BTAStar(getBTHeuristic());
                 validResponse = true;
             }
         }

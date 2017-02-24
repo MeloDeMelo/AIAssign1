@@ -14,7 +14,9 @@ public abstract class BTStrats {
     int depth;
     BridgeTorchNode currNode;
 
-    public BTStrats(){init();}
+    public BTStrats(){
+        init();
+    }
 
     public void init(){
         node_List = new LinkedList<>();

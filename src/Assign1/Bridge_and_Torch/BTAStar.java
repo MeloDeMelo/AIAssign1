@@ -9,7 +9,14 @@ import java.util.LinkedList;
  */
 public class BTAStar extends BTStrats{
 
-    private int heuristic(BridgeTorchNode currNode){
+    private possibleHeuristics heuristic;
+
+    public BTAStar(possibleHeuristics heuristic){
+        this.heuristic = heuristic;
+        init();
+    }
+
+    private int sumOfPeopleLeftOfBridgeHeuristicValue(BridgeTorchNode currNode){
         int value = 0;
         for(Integer person : currNode.getState().getPeopleLoB()){
             value += person;
@@ -17,8 +24,34 @@ public class BTAStar extends BTStrats{
         return value;
     }
 
+    private int bestTravelTimeRemaining(BridgeTorchNode currNode){
+        int value = 0;
+        int minValue = Integer.MIN_VALUE;
+        for(Integer person : currNode.getState().getPeopleLoB()){
+            value += person;
+            if(minValue > person)
+                minValue = person;
+        }
+        if(minValue != Integer.MIN_VALUE)
+            value += minValue * (currNode.getState().getPeopleLoB().size() - 2);
+        return value;
+    }
+
+    private int heuristicValue(BridgeTorchNode currNode){
+        switch (heuristic){
+            case FirstHeuristic :
+                return sumOfPeopleLeftOfBridgeHeuristicValue(currNode);
+            case SecondHeuristic :
+                return bestTravelTimeRemaining(currNode);
+            case ThirdHeuristic :
+                return (bestTravelTimeRemaining(currNode) + sumOfPeopleLeftOfBridgeHeuristicValue(currNode))/2;
+            default:
+                return 0;
+        }
+    }
+
     private int getHeuristicValue(BridgeTorchNode node){
-        return node.getCost() + heuristic(node);
+        return node.getCost() + heuristicValue(node);
     }
 
     public LinkedList<BridgeTorchNode> solve(BridgeTorch initialState) {
@@ -32,10 +65,10 @@ public class BTAStar extends BTStrats{
                 solved = true;
             }
             else if (!node_List.isEmpty()){
-                BridgeTorchNode bestNode = null;
+                BridgeTorchNode bestNode = node_List.getFirst();
                 for(BridgeTorchNode node : node_List){
-                    if(getHeuristicValue(node) <= getHeuristicValue(currNode))
-                        bestNode = currNode;
+                    if(getHeuristicValue(node) <= getHeuristicValue(bestNode))
+                        bestNode = node;
                 }
                 if(bestNode == null)
                     currNode = node_List.poll();
@@ -52,5 +85,19 @@ public class BTAStar extends BTStrats{
         }while(!solved);
 
         return interpretResults(currNode, initialState);
+    }
+
+    public enum possibleHeuristics {
+        FirstHeuristic("The sum of People Still Left of Bridge"),
+        SecondHeuristic("Best Travel Time Remaining"),
+        ThirdHeuristic("Average of the previous two heuristics");
+
+        private String description;
+        possibleHeuristics(String description){
+            this.description = description;
+        }
+        public String toString(){
+            return description;
+        }
     }
 }
