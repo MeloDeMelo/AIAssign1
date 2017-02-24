@@ -1,8 +1,9 @@
 package Assign1;
 
 import Assign1.Bridge_and_Torch.*;
-import Assign1.Bridge_and_Torch.BTAStar.possibleHeuristics;
+import Assign1.Bridge_and_Torch.BTAStar.possibleBTHeuristics;
 import Assign1.SpaceManagement.*;
+import Assign1.SpaceManagement.SMAStar.possibleSMSHeuristics;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -44,14 +45,14 @@ public class FrontEnd {
         System.out.println("Note: " + thing);
     }
 
-    private possibleHeuristics getBTHeuristic() {
+    private possibleBTHeuristics getBTHeuristic() {
         int response;
         boolean done = false;
-        possibleHeuristics heuristic = null;
+        possibleBTHeuristics heuristic = null;
         while (!done) {
             printBridgeAndTorch("Which Heuristic would you like to use?");
             int i = 0;
-            for (possibleHeuristics p : possibleHeuristics.values()) {
+            for (possibleBTHeuristics p : possibleBTHeuristics.values()) {
                 System.out.println("\t" + i + ": " + p);
                 i ++;
             }
@@ -59,8 +60,8 @@ public class FrontEnd {
                 in.next();
             }
             response = in.nextInt();
-            if ((response <= possibleHeuristics.values().length + 1) && (response > -1)) {
-                heuristic = possibleHeuristics.values()[response];
+            if ((response <= possibleBTHeuristics.values().length + 1) && (response > -1)) {
+                heuristic = possibleBTHeuristics.values()[response];
                 done = true;
             }
             else {
@@ -117,6 +118,32 @@ public class FrontEnd {
         }
     }
 
+    private possibleSMSHeuristics getSMSHeuristic() {
+        int response;
+        boolean done = false;
+        possibleSMSHeuristics heuristic = null;
+        while (!done) {
+            printSpaceManagement("Which Heuristic would you like to use?");
+            int i = 0;
+            for (possibleSMSHeuristics p : possibleSMSHeuristics.values()) {
+                System.out.println("\t" + i + ": " + p);
+                i ++;
+            }
+            while(!in.hasNextInt()) {
+                in.next();
+            }
+            response = in.nextInt();
+            if ((response <= possibleSMSHeuristics.values().length + 1) && (response > -1)) {
+                heuristic = possibleSMSHeuristics.values()[response];
+                done = true;
+            }
+            else {
+                printSpaceManagement("Invalid error!");
+            }
+        }
+        return heuristic;
+    }
+
     private void startSpaceManagement(){
         ArrayList<Integer> input = new ArrayList<>();
         printSpaceManagement("Please enter the width, height and number of blank squares");
@@ -149,6 +176,7 @@ public class FrontEnd {
                 strat = new SMDepthFirst();
                 validResponse = true;
             } else if (response.equals("3")){
+                strat = new SMAStar(getSMSHeuristic());
                 validResponse = true;
             }
         }

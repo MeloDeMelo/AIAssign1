@@ -9,9 +9,9 @@ import java.util.LinkedList;
  */
 public class BTAStar extends BTStrats{
 
-    private possibleHeuristics heuristic;
+    private possibleBTHeuristics heuristic;
 
-    public BTAStar(possibleHeuristics heuristic){
+    public BTAStar(possibleBTHeuristics heuristic){
         this.heuristic = heuristic;
         init();
     }
@@ -87,13 +87,13 @@ public class BTAStar extends BTStrats{
         return interpretResults(currNode, initialState);
     }
 
-    public enum possibleHeuristics {
+    public enum possibleBTHeuristics {
         FirstHeuristic("The sum of People Still Left of Bridge"),
         SecondHeuristic("Best Travel Time Remaining"),
         ThirdHeuristic("Average of the previous two heuristics");
 
         private String description;
-        possibleHeuristics(String description){
+        possibleBTHeuristics(String description){
             this.description = description;
         }
         public String toString(){
