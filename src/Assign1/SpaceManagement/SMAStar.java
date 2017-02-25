@@ -21,9 +21,9 @@ public class SMAStar extends SMStrats{
         int i, k = 0;
         int rightLimit = currnode.getState().getWidth()-1, bottomLimit = currnode.getState().getHeight()-1, leftLimit = 0, topLimit = 0;
 
-        while(correctPosition != numberRange) {
+        while(correctPosition < numberRange) {
             for (i = leftLimit; i <= rightLimit; i++) {
-                if(correctPosition == numberRange)
+                if(correctPosition > numberRange)
                     break;
                 else if (correctPosition != currnode.getState().getAtPosition(i,k))
                     incorrectTiles ++;
@@ -32,7 +32,7 @@ public class SMAStar extends SMStrats{
             i--;
             topLimit++;
             for (k = topLimit; k <= bottomLimit; k++) {
-                if(correctPosition == numberRange)
+                if(correctPosition > numberRange)
                     break;
                 else if (correctPosition != currnode.getState().getAtPosition(i,k))
                     incorrectTiles ++;
@@ -42,7 +42,7 @@ public class SMAStar extends SMStrats{
             rightLimit--;
 
             for (i = rightLimit; i >= leftLimit; i--) {
-                if(correctPosition == numberRange)
+                if(correctPosition > numberRange)
                     break;
                 else if (correctPosition != currnode.getState().getAtPosition(i,k))
                     incorrectTiles ++;
@@ -51,7 +51,7 @@ public class SMAStar extends SMStrats{
             i++;
             bottomLimit--;
             for (k = bottomLimit; k >= topLimit; k--) {
-                if(correctPosition == numberRange)
+                if(correctPosition > numberRange)
                     break;
                 else if (correctPosition != currnode.getState().getAtPosition(i,k))
                     incorrectTiles ++;
@@ -63,14 +63,72 @@ public class SMAStar extends SMStrats{
         return incorrectTiles;
     }
 
+    private int totalRelativePosition(SpaceManagementNode currNode){
+        int numberRange = currNode.getState().getWidth()*currNode.getState().getHeight() - currNode.getState().getBlankSpaces();
+        int correctPosition = 1;
+        int totalDistance = 0;
+        int i, k = 0;
+        int rightLimit = currNode.getState().getWidth()-1, bottomLimit = currNode.getState().getHeight()-1, leftLimit = 0, topLimit = 0;
+
+        while(correctPosition < numberRange) {
+            for (i = leftLimit; i <= rightLimit; i++) {
+                if(correctPosition > numberRange)
+                    break;
+                else if (correctPosition != currNode.getState().getAtPosition(i,k))
+                    totalDistance += distance(correctPosition,currNode,i,k);
+                correctPosition++;
+            }
+            i--;
+            topLimit++;
+            for (k = topLimit; k <= bottomLimit; k++) {
+                if(correctPosition > numberRange)
+                    break;
+                else if (correctPosition != currNode.getState().getAtPosition(i,k))
+                    totalDistance += distance(correctPosition,currNode,i,k);
+                correctPosition++;
+            }
+            k--;
+            rightLimit--;
+            for (i = rightLimit; i >= leftLimit; i--) {
+                if(correctPosition > numberRange)
+                    break;
+                else if (correctPosition != currNode.getState().getAtPosition(i,k))
+                    totalDistance += distance(correctPosition,currNode,i,k);
+                correctPosition++;
+            }
+            i++;
+            bottomLimit--;
+            for (k = bottomLimit; k >= topLimit; k--) {
+                if(correctPosition > numberRange)
+                    break;
+                else if (correctPosition != currNode.getState().getAtPosition(i,k))
+                    totalDistance += distance(correctPosition,currNode,i,k);
+                correctPosition++;
+            }
+            k++;
+            leftLimit++;
+        }
+        return totalDistance;
+    }
+
+    private int distance(int value, SpaceManagementNode node, int x, int y){
+        for(int i = 0; i < node.getState().getWidth(); i++){
+            for(int k = 0; k < node.getState().getHeight(); k ++){
+                if(node.getState().getAtPosition(i, k) == value)
+                    return Math.abs(x - i) + Math.abs(y - k);
+            }
+        }
+        return 0;
+    }
+
     private int heuristicValue(SpaceManagementNode currNode){
         switch (heuristic){
             case FirstHeuristic :
                 return tilesOutOfPlace(currNode);
             case SecondHeuristic :
-                return 0;
+                return totalRelativePosition(currNode);
             case ThirdHeuristic :
-                return 0;
+                return (tilesOutOfPlace(currNode) + totalRelativePosition(currNode))/2;
             default:
                 return 0;
         }
@@ -115,8 +173,8 @@ public class SMAStar extends SMStrats{
 
     public enum possibleSMSHeuristics {
         FirstHeuristic("Tiles out of place"),
-        SecondHeuristic("Not Implemented"),
-        ThirdHeuristic("Not Implemented");
+        SecondHeuristic("Total relative distance to correct position"),
+        ThirdHeuristic("Average of the two previous methods");
 
         private String description;
         possibleSMSHeuristics(String description){

@@ -1,5 +1,6 @@
 package Assign1.SpaceManagement;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -10,7 +11,8 @@ public class SMBreadthFirst extends SMStrats{
     public LinkedList<SpaceManagementNode> solve(SpaceManagementState initialState) {
         currNode = new SpaceManagementNode(initialState);
         do{
-            node_List.addAll(getNew_Nodes(currNode));
+            ArrayList<SpaceManagementNode> new_nodes = getNew_Nodes(currNode);
+            node_List.addAll(new_nodes);
 
             if(currNode.getState().checkWin()){
                 solved = true;

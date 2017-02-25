@@ -86,10 +86,10 @@ public class SpaceManagementState {
         int i, k = 0;
         int rightLimit = width-1, bottomLimit = height-1, leftLimit = 0, topLimit = 0;
 
-        while(correctPosition != numberRange) {
+        while(correctPosition < numberRange) {
             for (i = leftLimit; i <= rightLimit; i++) {
-                if(correctPosition == numberRange)
-                    break;
+                if((correctPosition == numberRange) && (correctPosition == getAtPosition(i,k)))
+                    return true;
                 else if (correctPosition != getAtPosition(i,k))
                     return false;
                 else
@@ -98,8 +98,8 @@ public class SpaceManagementState {
             i--;
             topLimit++;
             for (k = topLimit; k <= bottomLimit; k++) {
-                if(correctPosition == numberRange)
-                    break;
+                if((correctPosition == numberRange) && (correctPosition == getAtPosition(i,k)))
+                    return true;
                 else if (correctPosition != getAtPosition(i,k))
                     return false;
                 else
@@ -109,8 +109,8 @@ public class SpaceManagementState {
             rightLimit--;
 
             for (i = rightLimit; i >= leftLimit; i--) {
-                if(correctPosition == numberRange)
-                    break;
+                if((correctPosition == numberRange) && (correctPosition == getAtPosition(i,k)))
+                    return true;
                 else if (correctPosition != getAtPosition(i,k))
                     return false;
                 else
@@ -119,8 +119,8 @@ public class SpaceManagementState {
             i++;
             bottomLimit--;
             for (k = bottomLimit; k >= topLimit; k--) {
-                if(correctPosition == numberRange)
-                    break;
+                if((correctPosition == numberRange) && (correctPosition == getAtPosition(i,k)))
+                    return true;
                 else if (correctPosition != getAtPosition(i,k))
                     return false;
                 else
@@ -129,7 +129,7 @@ public class SpaceManagementState {
             k++;
             leftLimit++;
         }
-        return true;
+        return false;
     }
 
     public void setBoard(int[][] board){
